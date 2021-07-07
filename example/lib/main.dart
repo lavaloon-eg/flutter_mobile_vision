@@ -278,7 +278,7 @@ class _MyAppState extends State<MyApp> {
           right: 18.0,
           bottom: 12.0,
         ),
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: _scan,
           child: Text('SCAN!'),
         ),
@@ -420,7 +420,7 @@ class _MyAppState extends State<MyApp> {
           right: 18.0,
           bottom: 12.0,
         ),
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: _read,
           child: Text('READ!'),
         ),
@@ -555,7 +555,7 @@ class _MyAppState extends State<MyApp> {
           right: 18.0,
           bottom: 12.0,
         ),
-        child: RaisedButton(
+        child: ElevatedButton(
           onPressed: _face,
           child: Text('DETECT!'),
         ),

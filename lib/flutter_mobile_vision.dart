@@ -28,7 +28,7 @@ class FlutterMobileVision {
   ///
   ///
   ///
-  static List<Size> getPreviewSizes(int facing) {
+  static List<Size>? getPreviewSizes(int facing) {
     if (_previewSizes.containsKey(facing)) {
       return _previewSizes[facing];
     }
@@ -59,13 +59,13 @@ class FlutterMobileVision {
       'multiple': multiple,
       'waitTap': waitTap,
       'showText': showText,
-      'previewWidth': preview != null ? preview.width : PREVIEW.width,
-      'previewHeight': preview != null ? preview.height : PREVIEW.height,
+      'previewWidth': preview.width,
+      'previewHeight': preview.height,
       'camera': camera,
       'fps': fps,
     };
 
-    final List list = await _channel.invokeMethod('scan', arguments);
+    final List list = await (_channel.invokeMethod('scan', arguments) as FutureOr<List<dynamic>>);
 
     return list.map((map) => Barcode.fromMap(map)).toList();
   }
@@ -89,13 +89,13 @@ class FlutterMobileVision {
       'multiple': multiple,
       'waitTap': waitTap,
       'showText': showText,
-      'previewWidth': preview != null ? preview.width : PREVIEW.width,
-      'previewHeight': preview != null ? preview.height : PREVIEW.height,
+      'previewWidth': preview.width,
+      'previewHeight': preview.height,
       'camera': camera,
       'fps': fps,
     };
 
-    final List list = await _channel.invokeMethod('read', arguments);
+    final List list = await (_channel.invokeMethod('read', arguments) as FutureOr<List<dynamic>>);
 
     return list.map((map) => OcrText.fromMap(map)).toList();
   }
@@ -117,13 +117,13 @@ class FlutterMobileVision {
       'autoFocus': autoFocus,
       'multiple': multiple,
       'showText': showText,
-      'previewWidth': preview != null ? preview.width : PREVIEW.width,
-      'previewHeight': preview != null ? preview.height : PREVIEW.height,
+      'previewWidth': preview.width,
+      'previewHeight': preview.height,
       'camera': camera,
       'fps': fps,
     };
 
-    final List list = await _channel.invokeMethod('face', arguments);
+    final List list = await (_channel.invokeMethod('face', arguments) as FutureOr<List<dynamic>>);
 
     return list.map((map) => Face.fromMap(map)).toList();
   }
@@ -193,14 +193,14 @@ class Barcode {
     DRIVER_LICENSE: 'DRIVER LICENSE',
   };
 
-  final String displayValue;
-  final String rawValue;
-  final int format;
-  final int valueFormat;
-  final int top;
-  final int bottom;
-  final int left;
-  final int right;
+  final String? displayValue;
+  final String? rawValue;
+  final int? format;
+  final int? valueFormat;
+  final int? top;
+  final int? bottom;
+  final int? left;
+  final int? right;
 
   Barcode(
     this.displayValue, {
@@ -249,12 +249,12 @@ class Barcode {
 ///
 ///
 class OcrText {
-  final String value;
-  final String language;
-  final int top;
-  final int bottom;
-  final int left;
-  final int right;
+  final String? value;
+  final String? language;
+  final int? top;
+  final int? bottom;
+  final int? left;
+  final int? right;
 
   OcrText(
     this.value, {
@@ -289,16 +289,16 @@ class OcrText {
 ///
 ///
 class Face {
-  final int id;
-  final double eulerY;
-  final double eulerZ;
-  final double leftEyeOpenProbability;
-  final double rightEyeOpenProbability;
-  final double smilingProbability;
-  final int top;
-  final int bottom;
-  final int left;
-  final int right;
+  final int? id;
+  final double? eulerY;
+  final double? eulerZ;
+  final double? leftEyeOpenProbability;
+  final double? rightEyeOpenProbability;
+  final double? smilingProbability;
+  final int? top;
+  final int? bottom;
+  final int? left;
+  final int? right;
 
   Face(
     this.id, {
@@ -345,8 +345,8 @@ class Face {
 ///
 ///
 class Size {
-  final int width;
-  final int height;
+  final int? width;
+  final int? height;
 
   const Size(this.width, this.height);
 
